@@ -1,4 +1,4 @@
-# modal-project
+# HM3
 
 ## Project setup
 ```
