@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Main</router-link>
         <router-link :to="{ name: 'SignUp'}">Sign-up</router-link>
     </nav>
 </template>

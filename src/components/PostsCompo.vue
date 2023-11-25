@@ -1,19 +1,33 @@
 <template>
-    <h1>Posts</h1>
+<div id="posts-list">
+<p class="item" v-for="post in postsList" :key="post.id"> 
+  {{ post.id }}
+<!--<span class="user"> <b>Author: </b> {{ post.user }} </span>
+<span class="userName"> <b>Alias: </b> {{ post.userName }} </span>
+<span class="content"> <b>Content: </b> {{ post.content }} </span>
+<span class="date"> <b>Date: </b> {{ post.date }} </span>-->
+</p>
+</div>
 </template>
 
 <script>
 export default {
-    name: "PostsCompo",
-    data: function() {
-        return{
-
-        }
-    },
-    computed: {
-        postsList(){
-            return this.$store.state.postsList
-        }
-    }
+    name: "PostsCompo", 
+    data: function() {return{}},
+    computed: {postsList(){return this.$store.state.postsList}}
 }
 </script>
+
+<style scoped>
+.item {
+  background: rgb(128, 183, 235);
+  margin-bottom: 5px;
+  padding: 3px 5px;}
+#posts-list{
+  background: #1862c9;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+  padding: 10px 20px;}
+span{
+  margin-right: 10px;}
+</style>
