@@ -1,11 +1,15 @@
 <template>
   <div class="login-form">
     <div class="center">
-      <h>   Email</h>
-      <input type="email" v-model="email" required placeholder="Email"/><br>
-      <h>Password</h>
-      <input type="password" v-model="password" required placeholder="Password"/><br>
-      <button @click="validatePassword">SignUp</button><br>
+      <div class="input-container">
+        <h>Email</h>
+        <input type="email" v-model="email" required placeholder="Email"/><br>
+      </div>
+      <div class="input-container">
+        <h>Password</h>
+        <input type="password" v-model="password" required placeholder="Password"/><br>
+      </div>
+      <button @click="validatePassword">Sign-up</button><br>
       <b v-if="badPassword">Bad password</b>
       <li v-for="(requirement, key) in requirements" :key="key">
         {{ requirement.text }}
@@ -79,12 +83,14 @@ export default {
 
 <style scoped>
 .login-form {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   align-items: center;
   margin: auto;
   width: 50%;
-  height: 50vh;
-  padding: 10px;
+  height: 60%;
+  padding: 4%;
   margin-top: 40px;
   margin-bottom: 40px;
   border-radius: 40px;
@@ -92,13 +98,19 @@ export default {
 
 }
 .center {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   border: 10px black;
   float: left;
   padding: 7%;
   padding-top: 2%;
-  
+}
+
+.input-container {
+  margin: 5px;
+  width: 100%;
+  text-align: left;
 }
 
 input {
@@ -123,14 +135,25 @@ h {
 button {
   height: 8vh;
   width: 15vw;
-  background-color: #acc8e1;
+  background-color: #495867;
+  color: #acc8e1;
   border-radius: 4vh;
   border: 0;
   font-size: 3vh;
-  margin-top: 1vh;
+  margin-top: 10vh;
+}
+button:hover {
+  color: #F9C784;
 }
 li {
   color: red;
   font-size: 2vh;
+}
+
+@media (max-width: 500px) {
+.login-form {
+  margin: 10px, 0, 10px, 0;
+  width: 90%;
+}
 }
 </style>
