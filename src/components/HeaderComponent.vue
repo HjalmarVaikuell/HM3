@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: 'HeaderCompo'
+        name: 'HeaderComponent'
     }
 </script>
 
@@ -19,7 +19,7 @@ nav {
 }
 
 nav a {
-    font-family: baskerville;
+    font-family: baskerville, serif;
     padding: 10px;
     margin: 5px;
     font-weight: bold;

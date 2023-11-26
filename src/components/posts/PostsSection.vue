@@ -1,22 +1,27 @@
 <template>
-<div id="posts-list">
-<ul class="post" v-for="post in postsList" :key="post.id">
-  <div class="post-header">
-    <img class="profile-picture" v-bind:src="post.user.profilePicture">
-    <span class="userName"> <b> </b> {{ post.user.userName }} </span>
+  <div id="posts-list">
+    <PostItem v-for="post in posts" :key="post.id" :content="post.id" />
   </div>
-  <img class="content-picture" v-bind:src="post.picture">
-  <span class="content"> <b>Content: </b> {{ post.content }} </span>
-  <span class="date"> <b>Date: </b> {{ post.date }} </span>
-</ul>
-</div>
 </template>
 
 <script>
+import PostItem from "@/components/posts/PostItem.vue";
+
 export default {
-    name: "PostsCompo", 
-    data: function() {return{}},
-    computed: {postsList(){return this.$store.state.postsList}}
+  name: "PostsSection",
+  components: {PostItem},
+  data: function() {
+    return {
+      posts: []
+    }
+  },
+
+  created: {
+    postsList(){
+      this.posts = this.$store.state.postsList;
+      this.$store.state.postsList().
+    }
+  }
 }
 </script>
 
