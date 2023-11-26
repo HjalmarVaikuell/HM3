@@ -1,6 +1,10 @@
 <template>
   <div id="posts-list">
-    <PostItem v-for="post in posts" :key="post.id" :content="post.id" />
+    <PostItem v-for="post in posts"
+              :key="post.id"
+              v-bind="post"
+              @like-post="likePost(post.id)"
+    />
   </div>
 </template>
 
@@ -10,63 +14,33 @@ import PostItem from "@/components/posts/PostItem.vue";
 export default {
   name: "PostsSection",
   components: {PostItem},
-  data: function() {
-    return {
-      posts: []
+
+  computed: {
+    posts () {
+      return this.$store.getters.getPosts;
     }
   },
 
-  created: {
-    postsList(){
-      this.posts = this.$store.state.postsList;
-      this.$store.state.postsList().
+  methods: {
+    likePost (id) {
+      this.$store.commit('addLike', id);
     }
   }
+
 }
 </script>
 
 <style scoped>
-#posts-list{
+#posts-list {
   display: flex;
   flex-direction: column;
   background: #acc8e1;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
   margin-bottom: 30px;
-  padding: 10px 20px;}
-.post {
-  background: rgb(128, 183, 235);
-  width: 50dvw;
-  height: 60dvw;
-  align-self: center;
-  margin-bottom: 5px;
-  border-radius: 1cap;
-  padding: 3px 5px;}
-.post-header {
-  display: flex;
-  background-color: antiquewhite;
-  margin: 0.5dvw;}
-.profile-picture{
-  width: 7dvw;
-  height: 7dvw;
+  padding: 10px 20px;
 }
-.userName {
-  align-self: center;
-  margin-left: 5px;
+
+span {
+  margin-right: 10px;
 }
-.content-picture {
-  width: 48dvw;
-  height: 48dvw;
-}
-/*#posts-list ul{
-  padding: 0;
-  list-style-type: none;
-}
-#posts-list li{
-margin-right: 10px;
-margin-top: 10px;
-padding: 20px;
-background: rgba(255,255,255,0.7);
-}*/
-span{
-  margin-right: 10px;}
 </style>

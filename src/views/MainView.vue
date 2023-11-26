@@ -1,6 +1,6 @@
 <template>
-  <posts-section/>
-  <button class="resetLikes">Reset likes</button>
+  <PostsSection />
+  <button class="resetLikes" @click="resetLikes()">Reset likes</button>
 </template>
 
 <script>
@@ -9,6 +9,12 @@ import PostsSection from "@/components/posts/PostsSection.vue";
 
 export default {
   components: { PostsSection: PostsSection },
+
+  methods: {
+    resetLikes(){
+      this.$store.commit('resetLikes')
+    }
+  }
 };
 </script>
 
