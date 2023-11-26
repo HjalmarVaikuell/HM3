@@ -1,12 +1,13 @@
 <template>
 <div id="posts-list">
-<ul class="item" v-for="post in postsList" :key="post.id">
-<span class="profilePicture"></span>
-<img class="profile-picture" v-bind:src="'@/assets/' + post.user.profilePicture">
-<span class="user"> <b>Author: </b> {{ post.user.name }} </span>
-<span class="userName"> <b>Alias: </b> {{ post.user.userName }} </span>
-<span class="content"> <b>Content: </b> {{ post.content }} </span>
-<span class="date"> <b>Date: </b> {{ post.date }} </span>
+<ul class="post" v-for="post in postsList" :key="post.id">
+  <div class="post-header">
+    <img class="profile-picture" v-bind:src="post.user.profilePicture">
+    <span class="userName"> <b> </b> {{ post.user.userName }} </span>
+  </div>
+  <img class="content-picture" v-bind:src="post.picture">
+  <span class="content"> <b>Content: </b> {{ post.content }} </span>
+  <span class="date"> <b>Date: </b> {{ post.date }} </span>
 </ul>
 </div>
 </template>
@@ -20,15 +21,37 @@ export default {
 </script>
 
 <style scoped>
-.item {
-  background: rgb(128, 183, 235);
-  margin-bottom: 5px;
-  padding: 3px 5px;}
 #posts-list{
-  background: #1862c9;
+  display: flex;
+  flex-direction: column;
+  background: #acc8e1;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
   margin-bottom: 30px;
   padding: 10px 20px;}
+.post {
+  background: rgb(128, 183, 235);
+  width: 50dvw;
+  height: 60dvw;
+  align-self: center;
+  margin-bottom: 5px;
+  border-radius: 1cap;
+  padding: 3px 5px;}
+.post-header {
+  display: flex;
+  background-color: antiquewhite;
+  margin: 0.5dvw;}
+.profile-picture{
+  width: 7dvw;
+  height: 7dvw;
+}
+.userName {
+  align-self: center;
+  margin-left: 5px;
+}
+.content-picture {
+  width: 48dvw;
+  height: 48dvw;
+}
 /*#posts-list ul{
   padding: 0;
   list-style-type: none;
