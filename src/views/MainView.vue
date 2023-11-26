@@ -2,6 +2,7 @@
   <div>
     <posts-compo/>
   </div>
+  <button class="resetLikes">Reset likes</button>
 </template>
 
 <script>
@@ -15,15 +16,18 @@ export default {
 </script>
 
 <style scoped>
-body {
-    position: relative;
+.resetLikes {
+  background-color: #495867;
+  border: 0;
+  padding: 10px 20px 10px 20px;
+  margin-top:  20px;
+  margin-bottom:  20px;
+  margin-right:  10px;
+  color: #acc8e1;
+  border-radius: 20px;
 }
 
-.post {
-    width: 80%;
-    position: relative;
-    padding: 10px;
-    margin: 10px auto;
-    border: 1px solid gray;
+.resetLikes:hover {
+  color: #F9C784;
 }
 </style>
