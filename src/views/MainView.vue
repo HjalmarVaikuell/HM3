@@ -1,17 +1,14 @@
 <template>
-  <div>
-    <posts-compo/>
-  </div>
+  <posts-section/>
   <button class="resetLikes">Reset likes</button>
 </template>
 
 <script>
 // @ is an alias to /src
-import PostsCompo from "@/components/PostsCompo.vue";
+import PostsSection from "@/components/posts/PostsSection.vue";
 
 export default {
-  name: "compoPosts",
-  components: { PostsCompo },
+  components: { PostsSection: PostsSection },
 };
 </script>
 

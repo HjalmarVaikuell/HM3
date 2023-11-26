@@ -24,6 +24,6 @@ footer {
     background-color: #acc8e1;
     padding: 10px;
     font-size: small;
-    font-family: baskerville;
+    font-family: baskerville,serif;
 }
 </style>

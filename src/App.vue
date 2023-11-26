@@ -1,15 +1,15 @@
 <template>
-  <HeaderCompo/>
+  <HeaderComponent/>
   <router-view/>
   <FooterCompo/>
 </template>
 
 <script>
-import HeaderCompo from './components/HeaderCompo.vue'
-import FooterCompo from './components/FooterCompo.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
+import FooterCompo from './components/FooterComponent.vue'
 export default {
   components:{
-    HeaderCompo,
+    HeaderComponent,
     FooterCompo
   }
 }
