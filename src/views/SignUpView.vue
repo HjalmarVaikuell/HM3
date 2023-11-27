@@ -2,7 +2,7 @@
   <div class="login-form">
     <div class="center">
       <div class="input-container">
-        <h>Email</h>
+        <h>Email</h><h style="margin: 0; color: rgb(0,0,0,0); transp">.......</h>
         <input type="email" v-model="email" required placeholder="Email"/><br>
       </div>
       <div class="input-container">
