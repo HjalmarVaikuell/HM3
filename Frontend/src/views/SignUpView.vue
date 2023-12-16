@@ -17,8 +17,6 @@
   </template>
 
 <script>
-import router from '@/router';
-
 export default {
   data() {
     return {
@@ -29,6 +27,30 @@ export default {
     }
   },
   methods: {
+    SignUp() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include', // Don't forget to specify this if you need cookies
+        body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        window.alert("You've successfully registered!")
+        this.$router.push("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
+    },
     validatePassword() {
       const password = this.password;
       this.requirements = [];
@@ -49,13 +71,13 @@ export default {
         this.addRequirement({text: "Password needs to be 8-15 characters"});
       }
       if (password.toLowerCase() === password) {
-        this.addRequirement({text: "Include atleast 1 uppercase letter"});
+        this.addRequirement({text: "Include at least 1 uppercase letter"});
       }
       if (!/[a-z]{1}.{0,}[a-z]{1}/.test(password)) {
-        this.addRequirement({text: "Include atleast 2 lowercase letters"});
+        this.addRequirement({text: "Include at least 2 lowercase letters"});
       }
       if (!/\d/.test(password)) {
-        this.addRequirement({text:"Include atleast 1 number"});
+        this.addRequirement({text:"Include at least 1 number"});
       }
       if (password[0].toUpperCase() !== password[0]) {
         this.addRequirement({text: "Needs to start with an uppercase letter"});
@@ -64,20 +86,21 @@ export default {
         this.addRequirement({text: "Should include the letter '_'"});
       }
       
-      // if all requirements are met, go to main page
-      if( this.requirements.length === 0) {
-        router.push('/')
+      // if all requirements are met, go to login page
+      if (this.requirements.length === 0) {
+        this.SignUp();
+      } else {
+        this.badPassword = true;
+        return false; // requirements not met
       }
-      this.badPassword = true;
-      return false; // requirements not met
-   },
+    },
     addRequirement(requirement) {
       this.requirements.push(requirement);
     }
-
   }
 }
 </script>
+
 
 <style scoped>
 .form {
