@@ -1,20 +1,17 @@
 <template>
-  <div class="login-form">
-    <div class="center">
-      <div class="input-container">
-        <h>Email</h><h style="margin: 0; color: rgb(0,0,0,0); transp">.......</h>
-        <input type="email" v-model="email" required placeholder="Email"/><br>
-      </div>
-      <div class="input-container">
-        <h>Password</h>
-        <input type="password" v-model="password" required placeholder="Password"/><br>
-      </div>
+  <div class="form">
+    <h3>Sign-up</h3>
+    <label for="email">Email</label>
+    <input type="email" name="email"  required v-model="email">
+    <label for="password">Password</label>
+    <input type="password" name="password" required v-model="password">
+    <div class="container">
       <button @click="validatePassword">Sign-up</button><br>
-      <b v-if="badPassword">Bad password</b>
-      <li v-for="(requirement, key) in requirements" :key="key">
-        {{ requirement.text }}
-      </li>
     </div>
+    <b v-if="badPassword">Bad password</b>
+    <li v-for="(requirement, key) in requirements" :key="key">
+      {{ requirement.text }}
+    </li>
   </div>
   </template>
 
@@ -82,65 +79,55 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  display: flex;
-  flex-direction: column;
+.form {
+  max-width: 420px;
+  margin: 30px auto;
+  background: rgb(167, 154, 154);
+  text-align: left;
+  padding: 40px;
+  border-radius: 10px;
+}
+h3 {
   text-align: center;
+  color: #495867;
+}
+label {
+  color: #495867;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+input {
+  display: block;
+  padding: 10px 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid white;
+}
+button {
+  background-color: #495867;
+  border: 0;
+  padding: 10px 20px;
+  margin: 20px 20px 20px 20px;
+  color: #acc8e1;
+  border-radius: 20px;
   align-items: center;
-  margin: auto;
-  width: 50%;
-  height: 60%;
-  padding: 4%;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-radius: 40px;
-  background-color: rgb(198, 188, 155);
-
+  text-align: center;
 }
 .center {
+  margin: auto;
+  border: 0;
+  padding: 10px 20px;
+  margin-top: 20px;
+  width: 30%; 
+}
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 10px black;
-  float: left;
-  padding: 7%;
-  padding-top: 2%;
-}
-
-.input-container {
-  margin: 5px;
-  width: 100%;
-  text-align: left;
-}
-
-input {
-  height: 10vh;
-  width: 23vw;
-  border-radius: 4vh;
-  border: 0;
-  margin-top: 2vh;
-  text-align: center;
-  font-size: 3vh;
-  right:5vw;
-  margin-left: auto; 
-  margin-right: 0;
-}
-
-h {
-  font-size: 3vh;
-  margin-left: 2vw;
-  margin-right: 2vw;
-}
-
-button {
-  height: 8vh;
-  width: 15vw;
-  background-color: #495867;
-  color: #acc8e1;
-  border-radius: 4vh;
-  border: 0;
-  font-size: 3vh;
-  margin-top: 10vh;
+  justify-content: center;
 }
 button:hover {
   color: #F9C784;
@@ -151,7 +138,7 @@ li {
 }
 
 @media (max-width: 500px) {
-.login-form {
+.form {
   margin: 10px, 0, 10px, 0;
   width: 90%;
 }
