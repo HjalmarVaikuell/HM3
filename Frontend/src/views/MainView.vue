@@ -1,11 +1,11 @@
 <template>
   <div id="posts-background">
-    <button>Logout</button>
+    <button @click="logout()">Logout</button>
     <PostsSection/>
     <div class="container">
       <button @click="resetLikes()">Reset likes</button>
-      <button>Add post</button>
-      <button>Delete all</button>
+      <button @click="addPost()">Add post</button>
+      <button @click="deletePosts()">Delete all</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,15 @@ export default {
   methods: {
     resetLikes(){
       this.$store.commit('resetLikes')
+    },
+    logout() {
+      this.$router.push('/login')
+    },
+    addPost() {
+      this.$router.push('/addpost')
+    },
+    deletePosts() {
+
     }
   }
 };
