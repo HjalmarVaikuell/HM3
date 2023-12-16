@@ -1,7 +1,7 @@
 <template>
     <nav>
         <router-link to="/">Main</router-link>
-        <router-link :to="{ name: 'Login'}">Login</router-link>
+        <router-link :to="{ name: 'Contacts'}">Contacts</router-link>
     </nav>
 </template>
 
