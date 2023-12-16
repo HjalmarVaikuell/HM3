@@ -7,6 +7,7 @@
     <input type="password" name="password" required v-model="password">
     <div class="container">
       <button @click="validatePassword">Sign-up</button><br>
+      <button @click='this.$router.push("/login")'>Back to Login</button>
     </div>
     <b v-if="badPassword">Bad password</b>
     <li v-for="(requirement, key) in requirements" :key="key">

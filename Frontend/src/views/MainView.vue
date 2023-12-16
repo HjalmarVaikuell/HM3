@@ -1,6 +1,13 @@
 <template>
-  <PostsSection />
-  <button class="resetLikes" @click="resetLikes()">Reset likes</button>
+  <div id="posts-background">
+    <button>Logout</button>
+    <PostsSection/>
+    <div class="container">
+      <button @click="resetLikes()">Reset likes</button>
+      <button>Add post</button>
+      <button>Delete all</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,18 +26,27 @@ export default {
 </script>
 
 <style scoped>
-.resetLikes {
-  background-color: #495867;
-  border: 0;
-  padding: 10px 20px 10px 20px;
-  margin-top:  20px;
-  margin-bottom:  20px;
-  margin-right:  10px;
-  color: #acc8e1;
-  border-radius: 20px;
+#posts-background {
+  margin: 5px;
+  background-color: #acc8e1;
+}
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.resetLikes:hover {
+button {
+  background-color: #495867;
+  border: 0;
+  padding: 10px 20px;
+  margin: 20px 20px 20px 20px;
+  color: #acc8e1;
+  border-radius: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+button:hover {
   color: #F9C784;
 }
 </style>
