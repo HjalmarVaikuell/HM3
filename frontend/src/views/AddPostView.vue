@@ -8,15 +8,16 @@
 </template>
 
 <script>
+import auth from "../auth";
 export default ({
   name: 'AddPost',
-
   data() {
     return {
       body: '',
+      authResult: auth.authenticated()
     };
   },
-
+  
   methods: {
     submitPost() {
       var data = {
@@ -41,7 +42,19 @@ export default ({
         console.log("error");
       });
     },
-  },
+    verifyAccess() {
+      this.authResult.then(result => {
+        if (result) {
+        return
+      } else {
+        this.$router.push('/login')
+      }}
+      )
+  }},
+  beforeMount() {
+    this.verifyAccess();
+  }
+  
 });
 </script>
 
