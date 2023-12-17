@@ -131,4 +131,14 @@ app.post('/api/posts/', async(req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-});
+},
+app.post('/api/deleteposts', async() => {
+    try {
+        console.log("deleting all posts");
+        await pool.query(
+            "DELETE FROM posts",
+        );
+    } catch (err) {
+        console.error(err.message);
+    }
+}));

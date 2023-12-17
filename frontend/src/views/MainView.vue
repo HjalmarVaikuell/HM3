@@ -42,7 +42,16 @@ export default {
     
     },
     deletePosts() {
-
+      fetch("http://localhost:3000/api/deleteposts", {
+        method: "POST",
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
     verifyAccess() {
       this.authResult.then(result => {
