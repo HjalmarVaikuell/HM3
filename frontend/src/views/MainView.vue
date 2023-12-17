@@ -43,7 +43,18 @@ export default {
     },
     deletePosts() {
 
-    }
+    },
+    verifyAccess() {
+      this.authResult.then(result => {
+        if (result) {
+        return
+      } else {
+        this.$router.push('/login')
+      }}
+      )
+  }},
+  beforeMount() {
+    this.verifyAccess();
   }
 };
 </script>
