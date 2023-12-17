@@ -35,8 +35,7 @@ const createTblQuery = `
     CREATE TABLE IF NOT EXISTS "posts" (
         id SERIAL PRIMARY KEY,
         body TEXT NOT NULL,
-        "user" uuid REFERENCES users(id) NOT NULL,
-        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        date DATE DEFAULT CURRENT_TIMESTAMP::date
     );
 `;
     

@@ -28,7 +28,7 @@ app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
 
-/*
+
 // is used to check whether a user is authinticated
 app.get('/auth/authenticate', async(req, res) => {
     console.log('authentication request has been arrived');
@@ -114,4 +114,21 @@ app.post('/auth/login', async(req, res) => {
 app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
-});*/
+});
+
+app.post('/api/posts/', async(req, res) => {
+    try {
+        console.log("a post request has arrived");
+        const post = req.body;
+        console.info(post)
+        const newpost = await pool.query(
+            "INSERT INTO posts(body, userid) values ($1, $2)    RETURNING*", [post.body, post.user]
+// $1, $2, $3 are mapped to the first, second and third element of the passed array (post.title, post.body, post.urllink) 
+// The RETURNING keyword in PostgreSQL allows returning a value from the insert or update statement.
+// using "*" after the RETURNING keyword in PostgreSQL, will return everything
+        );
+        res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});

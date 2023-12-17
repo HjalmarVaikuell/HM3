@@ -19,8 +19,27 @@ export default ({
 
   methods: {
     submitPost() {
-      // TODO
-      console.log('Post submitted:', this.body);
+      var data = {
+        body: this.body,
+        user: this.user,
+      };
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+      .then((response) => {
+        console.log(response.data);
+        // redirect to /allposts view
+        this.$router.push("/api/allposts");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
   },
 });

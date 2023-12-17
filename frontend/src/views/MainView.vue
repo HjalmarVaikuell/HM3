@@ -13,9 +13,16 @@
 <script>
 // @ is an alias to /src
 import PostsSection from "@/components/posts/PostsSection.vue";
+import auth from "../auth";
 
 export default {
   components: { PostsSection: PostsSection },
+  data: function() {
+    return {
+    posts:[ ],
+    authResult: auth.authenticated()
+    }
+  },
 
   methods: {
     resetLikes(){
@@ -25,7 +32,14 @@ export default {
       this.$router.push('/login')
     },
     addPost() {
-      this.$router.push('/addpost')
+      this.authResult.then(result => {
+        if (result) {
+        this.$router.push('/addpost')
+      } else {
+        this.$router.push('/login')
+      }}
+      )
+    
     },
     deletePosts() {
 
