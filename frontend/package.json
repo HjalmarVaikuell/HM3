@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "fetch-intercept": "^2.4.0",
     "vue": "^3.2.13",
     "vue-router": "^4.2.5",
     "vuex": "^4.1.0"
@@ -22,5 +23,10 @@
     "@vue/cli-service": "^5.0.8",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
   }
 }

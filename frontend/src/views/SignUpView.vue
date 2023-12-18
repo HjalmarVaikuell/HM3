@@ -26,9 +26,10 @@ export default {
       badPassword: false,
     }
   },
+
   methods: {
     SignUp() {
-      var data = {
+      const data = {
         email: this.email,
         password: this.password
       };
@@ -47,16 +48,17 @@ export default {
         this.$router.push("/");
       })
       .catch((e) => {
-        console.log(e);
-        console.log("error");
+        window.alert("Failed to register!")
+        console.log(e)
       });
     },
+
     validatePassword() {
       const password = this.password;
       this.requirements = [];
       this.badPassword = false;
 
-      if (this.email == '' || this.password == '') {
+      if (this.email === '' || this.password === '') {
         this.addRequirement({text: "Both email and password are necessary"});
         return false;
       }
@@ -163,7 +165,7 @@ li {
 
 @media (max-width: 500px) {
 .form {
-  margin: 10px, 0, 10px, 0;
+  margin: 10px 0;
   width: 90%;
 }
 }

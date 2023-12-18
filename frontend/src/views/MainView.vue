@@ -1,9 +1,8 @@
 <template>
   <div id="posts-background">
-    <button @click="logout()">Logout</button>
-    <PostsSection/>
+    <button v-if="loggedIn" @click="handleLogout()">Logout</button>
+    <PostsSection v-if="loggedIn" />
     <div class="container">
-      <button @click="resetLikes()">Reset likes</button>
       <button @click="addPost()">Add post</button>
       <button @click="deletePosts()">Delete all</button>
     </div>
@@ -14,19 +13,45 @@
 // @ is an alias to /src
 import PostsSection from "@/components/posts/PostsSection.vue";
 
+import { mapGetters, mapActions } from "vuex";
+
+
 export default {
+  name: "MainView",
   components: { PostsSection: PostsSection },
 
+  data: function() {
+    return {
+    }
+  },
+
+  computed: {
+    ...mapGetters('authStore', [
+      'loggedIn',
+      'authenticating',
+      'authenticationError',
+      'authenticationErrorCode'
+    ])
+  },
+
   methods: {
-    resetLikes(){
-      this.$store.commit('resetLikes')
+
+    ...mapActions('authStore', [
+      'logout'
+    ]),
+
+    handleLogout() {
+
+      const success = this.logout();
+      if(!success){
+        window.alert("Failed to log out");
+      }
     },
-    logout() {
-      this.$router.push('/login')
-    },
+
     addPost() {
       this.$router.push('/addpost')
     },
+
     deletePosts() {
 
     }

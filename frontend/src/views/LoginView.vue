@@ -6,13 +6,16 @@
       <label for="password">Password</label>
       <input type="password" name="password" required v-model="password">
       <div class="container">
-        <button @click="LogIn" class="center">LogIn</button>
+        <button @click="handleLogin" class="center">LogIn</button>
         <button @click='this.$router.push("/signup")' class="center">Signup</button>
       </div>
     </div>
   </template>
 
 <script>
+
+import { mapGetters, mapActions } from "vuex";
+
 export default {
   name: "LogIn", // Component name
 
@@ -23,33 +26,32 @@ export default {
     };
   },
 
-  methods: {
-            LogIn() {
-        var data = {
-            email: this.email,
-            password: this.password
-        };
+  computed: {
+    ...mapGetters('authStore', [
+      'authenticating',
+      'authenticationError',
+      'authenticationErrorCode'
+    ])
+  },
 
-        // Using Fetch API to send a POST request to the server
-        fetch("http://localhost:3000/auth/login", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            credentials: 'include', // Include credentials (cookies) in the request
-            body: JSON.stringify(data),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            // Redirect to the home page after successful login using Vue Router
-            this.$router.push('/');
-        })
-        .catch((e) => {
-            console.log(e);
-            console.log("error");
-        });
-        },
+  methods: {
+
+    ...mapActions('authStore', [
+      'login'
+    ]),
+
+    handleLogin(){
+      if(this.email !== '' && this.password !== '') {
+        const success = this.login(this.email, this.password);
+        if(!success) {
+          this.password = '';
+          window.alert("Failed to log in")
+        }
+      }
+      else {
+        window.alert("Please fill the email and password fields to log in")
+      }
+    }
   },
 }
 </script>
