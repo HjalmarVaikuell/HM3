@@ -7,8 +7,7 @@ import store from "@/store/index";
 const ApiService = {
 
     addBaseUrl(url) {
-        console.log(process.env.BASE_URL)
-        return process.env.BASE_URL + url;
+        return "http://localhost:3000" + url;
     },
 
     addToken(options) {
@@ -29,6 +28,7 @@ const ApiService = {
     post(path, options) {
         const data = { ...options};
         data.method = "POST";
+
         return fetch(this.addBaseUrl(path), this.addToken(data));
     },
 

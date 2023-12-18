@@ -34,15 +34,20 @@ const UserService = {
             body: JSON.stringify(credentials)
         };
 
-        try {
-            const response = await ApiService.post("/auth/login", requestData)
+        console.log(requestData);
 
-            TokenService.saveToken(response.json.jwt);
-            TokenService.saveRefreshToken(response.cookie.refresh_token);
+        try {
+            const response = await ApiService.post("/auth/login", requestData);
+
+            const json = response.json();
+
+
+            TokenService.saveToken(json.jwt);
+            TokenService.saveRefreshToken(json.refresh_token);
 
             ApiService.mount401Interceptor();
 
-            return response.json.jwt;
+            return json.jwt;
         } catch (error) {
             console.log(error);
             throw new AuthenticationError(error.response.status, error.message);
@@ -66,10 +71,11 @@ const UserService = {
         try {
             const response = await ApiService.post("/auth/refresh_token", requestData);
 
-            TokenService.saveToken(response.json.jwt);
-            TokenService.saveRefreshToken(response.cookie.refresh_token);
+            const json = response.json();
+            TokenService.saveToken(json.jwt);
+            TokenService.saveRefreshToken(json.refresh_token);
 
-            return response.json.jwt;
+            return json.jwt;
         } catch (error) {
             throw new AuthenticationError(error.response.status, error.message);
         }

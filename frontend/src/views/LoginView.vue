@@ -42,7 +42,13 @@ export default {
 
     handleLogin(){
       if(this.email !== '' && this.password !== '') {
-        const success = this.login(this.email, this.password);
+        console.log(this.email);
+        const credentials = {
+          email: this.email,
+          password: this.password
+        }
+
+        const success = this.login(credentials);
         if(!success) {
           this.password = '';
           window.alert("Failed to log in")
